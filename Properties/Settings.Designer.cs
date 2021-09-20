@@ -94,5 +94,53 @@ namespace ToolApp.Properties {
                 this["beforeSavePath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public string xlMaxWidth {
+            get {
+                return ((string)(this["xlMaxWidth"]));
+            }
+            set {
+                this["xlMaxWidth"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public string xlMaxHeight {
+            get {
+                return ((string)(this["xlMaxHeight"]));
+            }
+            set {
+                this["xlMaxHeight"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public string xlSpanHeight {
+            get {
+                return ((string)(this["xlSpanHeight"]));
+            }
+            set {
+                this["xlSpanHeight"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string xlSaveFileName {
+            get {
+                return ((string)(this["xlSaveFileName"]));
+            }
+            set {
+                this["xlSaveFileName"] = value;
+            }
+        }
     }
 }

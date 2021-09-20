@@ -24,7 +24,7 @@ namespace ToolApp
         
 
         private Counter counter;
-
+        private CreateExcelForm xlsxForm;
 
         public MainForm()
         {
@@ -408,6 +408,23 @@ namespace ToolApp
         {
             // アプリケーションの終了
             Application.Exit();
+        }
+
+        private void createExcelButton_Click(object sender, EventArgs e)
+        {
+            SaveSettings();
+            if (xlsxForm == null)
+            {
+                xlsxForm = new CreateExcelForm();
+            }
+
+            xlsxForm.FormInitialize();
+
+            if (!xlsxForm.Visible)
+            {
+                xlsxForm.Visible = true;
+            }
+            xlsxForm.Activate();
         }
     }
 }

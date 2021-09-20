@@ -47,6 +47,7 @@ namespace ToolApp
             this.button1 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.saveFileOpen = new System.Windows.Forms.Button();
+            this.createExcelButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // savePath
@@ -207,11 +208,22 @@ namespace ToolApp
             this.saveFileOpen.UseVisualStyleBackColor = true;
             this.saveFileOpen.Click += new System.EventHandler(this.saveFileOpen_Click);
             // 
+            // createExcelButton
+            // 
+            this.createExcelButton.Location = new System.Drawing.Point(16, 245);
+            this.createExcelButton.Name = "createExcelButton";
+            this.createExcelButton.Size = new System.Drawing.Size(125, 32);
+            this.createExcelButton.TabIndex = 17;
+            this.createExcelButton.Text = "Excelに張り付ける";
+            this.createExcelButton.UseVisualStyleBackColor = true;
+            this.createExcelButton.Click += new System.EventHandler(this.createExcelButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(412, 289);
+            this.Controls.Add(this.createExcelButton);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.initButton);
             this.Controls.Add(this.beforeSavePath);
@@ -261,6 +273,7 @@ namespace ToolApp
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button saveFileOpen;
+        private System.Windows.Forms.Button createExcelButton;
     }
 }
 
