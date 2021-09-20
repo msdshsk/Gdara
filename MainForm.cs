@@ -16,7 +16,7 @@ using ImageFormat = System.Drawing.Imaging.ImageFormat;
 
 namespace ToolApp
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         HotKey hotKey;
         NotifyIcon notifyIcon;
@@ -26,7 +26,7 @@ namespace ToolApp
         private Counter counter;
 
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
             this.setComponents();
@@ -35,10 +35,11 @@ namespace ToolApp
             //WindowState = FormWindowState.Minimized;
             this.ShowInTaskbar = false;
 
+            /*
             System.Configuration.Configuration config =
-    System.Configuration.ConfigurationManager.OpenExeConfiguration(
-    System.Configuration.ConfigurationUserLevel.PerUserRoamingAndLocal);
-            Debug.WriteLine(config.FilePath);
+                System.Configuration.ConfigurationManager.OpenExeConfiguration(
+                    System.Configuration.ConfigurationUserLevel.PerUserRoamingAndLocal);
+            */
         }
         
         private void setComponents()
@@ -61,6 +62,10 @@ namespace ToolApp
             // 設定画面を開く処理
             hotKey = new HotKey(MOD_KEY.CONTROL, Keys.D1);
             hotKey.HotKeyPush += new EventHandler(hotKey_OpenSetting);
+
+            // 保存フォルダを開く
+            hotKey = new HotKey(MOD_KEY.CONTROL, Keys.D2);
+            hotKey.HotKeyPush += new EventHandler(hotKey_OpenSavePath);
 
             InitSettings();
             InitCounter();
@@ -190,18 +195,31 @@ namespace ToolApp
             formVisibleEvent(sender, e);
         }
 
+        public void hotKey_OpenSavePath(object sender, EventArgs e)
+        {
+            string save = savePath.Text;
+            if (!String.IsNullOrEmpty(caseNum.Text))
+            {
+                save += @"\" + caseNum.Text;
+            }
+            Process.Start(
+                Environment.GetEnvironmentVariable("WINDIR") + @"\explorer.exe",
+                save
+            );
+        }
+
         private void ApplicationExit(object handler, EventArgs e)
         {
             // HotKeyの登録を解除する
             hotKey.Dispose();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (this.Visible == true && e.CloseReason == CloseReason.UserClosing)
             {
@@ -232,6 +250,34 @@ namespace ToolApp
             if (fbd.ShowDialog(this) == DialogResult.OK)
             {
                 savePath.Text = fbd.SelectedPath;
+            }
+        }
+
+        private void saveFileOpen_Click(object sender, EventArgs e)
+        {
+            bool isError = false;
+            if (!String.IsNullOrEmpty(beforeSavePath.Text) && File.Exists(beforeSavePath.Text))
+            {
+                try {
+                    Process proc = new Process();
+                    proc.StartInfo.FileName = beforeSavePath.Text;
+                    proc.StartInfo.UseShellExecute = true;
+                    proc.Start();
+                }
+                finally
+                {
+                    isError = true;
+                }
+
+            }
+            else
+            {
+                isError = true;
+            }
+
+            if (isError)
+            {
+                MessageBox.Show("ファイルが削除されたか移動されているため開くことが出来ません。\r\n" + beforeSavePath.Text);
             }
         }
 
@@ -296,7 +342,6 @@ namespace ToolApp
 
                     string basename = new FileInfo(file).Name;
                     basename = basename.Substring(fileInitial.Text.Length, basename.Length - ((extension.SelectedItem.ToString().Length + 1) + fileInitial.Text.Length));
-                    Debug.WriteLine(basename);
                     int current = suppress(basename);
                     if (max < current)
                     {

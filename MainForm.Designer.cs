@@ -1,7 +1,7 @@
 ﻿
 namespace ToolApp
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -46,6 +46,7 @@ namespace ToolApp
             this.label5 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
+            this.saveFileOpen = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // savePath
@@ -121,7 +122,7 @@ namespace ToolApp
             // 
             this.beforeSavePath.Location = new System.Drawing.Point(16, 181);
             this.beforeSavePath.Name = "beforeSavePath";
-            this.beforeSavePath.Size = new System.Drawing.Size(371, 23);
+            this.beforeSavePath.Size = new System.Drawing.Size(300, 23);
             this.beforeSavePath.TabIndex = 14;
             // 
             // padSize
@@ -192,11 +193,21 @@ namespace ToolApp
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(12, 163);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(105, 15);
+            this.label6.Size = new System.Drawing.Size(115, 15);
             this.label6.TabIndex = 2;
-            this.label6.Text = "最後に保存した場所";
+            this.label6.Text = "最後に保存したファイル";
             // 
-            // Form1
+            // saveFileOpen
+            // 
+            this.saveFileOpen.Location = new System.Drawing.Point(322, 180);
+            this.saveFileOpen.Name = "saveFileOpen";
+            this.saveFileOpen.Size = new System.Drawing.Size(65, 22);
+            this.saveFileOpen.TabIndex = 1;
+            this.saveFileOpen.Text = "開く";
+            this.saveFileOpen.UseVisualStyleBackColor = true;
+            this.saveFileOpen.Click += new System.EventHandler(this.saveFileOpen_Click);
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -216,14 +227,15 @@ namespace ToolApp
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.saveFileOpen);
             this.Controls.Add(this.refButton);
             this.Controls.Add(this.savePath);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Form1";
-            this.Text = "Form1";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Name = "MainForm";
+            this.Text = "設定";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -248,6 +260,7 @@ namespace ToolApp
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button saveFileOpen;
     }
 }
 
