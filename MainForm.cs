@@ -266,7 +266,7 @@ namespace ToolApp
                 }
                 finally
                 {
-                    isError = true;
+                    isError = false;
                 }
 
             }
