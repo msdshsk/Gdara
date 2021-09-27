@@ -5,6 +5,8 @@
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
     <ApplicationIcon>Resources\icon.ico</ApplicationIcon>
+    <AssemblyName>Gdara</AssemblyName>
+    <RootNamespace>Gdara</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -68,6 +70,10 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="binary\" />
   </ItemGroup>
 
 </Project>

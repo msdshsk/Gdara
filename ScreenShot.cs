@@ -10,7 +10,7 @@ using System.Windows.Interop;//CreateBitmapSourceFromHBitmapで使っている
 using System.Windows.Media.Imaging;
 using System.Drawing;
 
-namespace ToolApp
+namespace Gdara
 {
     [StructLayout(LayoutKind.Sequential)]
     struct RECT

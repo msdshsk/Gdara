@@ -1,5 +1,5 @@
 ﻿
-namespace ToolApp
+namespace Gdara
 {
     partial class CreateExcelForm
     {
@@ -205,7 +205,7 @@ namespace ToolApp
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "CreateExcelForm";
-            this.Text = "Excelに張り付ける";
+            this.Text = "Gdara - Excelに張り付ける";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CreateExcelForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();

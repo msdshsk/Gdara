@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ToolApp.Properties {
+namespace Gdara.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -140,6 +140,30 @@ namespace ToolApp.Properties {
             }
             set {
                 this["xlSaveFileName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool autoCntReset {
+            get {
+                return ((bool)(this["autoCntReset"]));
+            }
+            set {
+                this["autoCntReset"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool inactiveCheck {
+            get {
+                return ((bool)(this["inactiveCheck"]));
+            }
+            set {
+                this["inactiveCheck"] = value;
             }
         }
     }

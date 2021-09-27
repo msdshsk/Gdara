@@ -13,8 +13,9 @@ using System.IO;
 using System.Text.RegularExpressions;
 
 using ImageFormat = System.Drawing.Imaging.ImageFormat;
+using Gdara;
 
-namespace ToolApp
+namespace Gdara
 {
     public partial class MainForm : Form
     {
@@ -66,6 +67,10 @@ namespace ToolApp
             // 保存フォルダを開く
             hotKey = new HotKey(MOD_KEY.CONTROL, Keys.D2);
             hotKey.HotKeyPush += new EventHandler(hotKey_OpenSavePath);
+
+            // 最後に保存したSSを開く
+            hotKey = new HotKey(MOD_KEY.CONTROL, Keys.D3);
+            hotKey.HotKeyPush += new EventHandler(hotKey_OpenSaveFile);
 
             InitSettings();
             InitCounter();
@@ -128,6 +133,11 @@ namespace ToolApp
 
         public void hotKey_ScreenShotAndSaveAs(object sender, EventArgs e)
         {
+            if (Form.ActiveForm == this && inactiveCheck.Checked)
+            {
+                Window.ActivateSecondWindow();
+            }
+
             ScreenShot shot = new ScreenShot();
             Bitmap bitmap = shot.execute();
 
@@ -150,6 +160,12 @@ namespace ToolApp
 
         public void hotKey_ScreenShot(object sender, EventArgs e)
         {
+            if (Form.ActiveForm == this && inactiveCheck.Checked)
+            {
+                Window.ActivateSecondWindow();
+            }
+
+
             ScreenShot shot = new ScreenShot();
             Bitmap bitmap = shot.execute();
 
@@ -198,7 +214,7 @@ namespace ToolApp
         public void hotKey_OpenSavePath(object sender, EventArgs e)
         {
             string save = savePath.Text;
-            if (!String.IsNullOrEmpty(caseNum.Text))
+            if (!String.IsNullOrEmpty(caseNum.Text) && Directory.Exists(save + @"\" + caseNum.Text))
             {
                 save += @"\" + caseNum.Text;
             }
@@ -206,6 +222,11 @@ namespace ToolApp
                 Environment.GetEnvironmentVariable("WINDIR") + @"\explorer.exe",
                 save
             );
+        }
+
+        public void hotKey_OpenSaveFile(object sender, EventArgs e)
+        {
+            saveFileOpen_Click(sender, e);
         }
 
         private void ApplicationExit(object handler, EventArgs e)
@@ -277,7 +298,10 @@ namespace ToolApp
 
             if (isError)
             {
-                MessageBox.Show("ファイルが削除されたか移動されているため開くことが出来ません。\r\n" + beforeSavePath.Text);
+                // バルーンヒントを表示する
+                notifyIcon.BalloonTipTitle = "ファイルが開けませんでした";
+                notifyIcon.BalloonTipText = "ファイルが削除されたか移動されているため開くことが出来ません。\r\n" + beforeSavePath.Text;
+                notifyIcon.ShowBalloonTip(5000);
             }
         }
 
@@ -305,6 +329,8 @@ namespace ToolApp
             fileInitial.Text = Properties.Settings.Default.fileInitial;
             padSize.Text = Properties.Settings.Default.padSize;
             caseNum.Text = Properties.Settings.Default.caseNo;
+            autoCntReset.Checked = Properties.Settings.Default.autoCntReset;
+            inactiveCheck.Checked = Properties.Settings.Default.inactiveCheck;
         }
 
         private void SaveSettings()
@@ -314,6 +340,8 @@ namespace ToolApp
             Properties.Settings.Default.padSize = padSize.Text;
             Properties.Settings.Default.beforeSavePath = beforeSavePath.Text;
             Properties.Settings.Default.caseNo = caseNum.Text;
+            Properties.Settings.Default.autoCntReset = autoCntReset.Checked;
+            Properties.Settings.Default.inactiveCheck = inactiveCheck.Checked;
             Properties.Settings.Default.Save();
         }
 
@@ -425,6 +453,19 @@ namespace ToolApp
                 xlsxForm.Visible = true;
             }
             xlsxForm.Activate();
+        }
+
+        private void caseNum_TextChanged(object sender, EventArgs e)
+        {
+            if (autoCntReset.Checked)
+            {
+                InitCounter();
+            }
+        }
+
+        private void autoCntReset_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

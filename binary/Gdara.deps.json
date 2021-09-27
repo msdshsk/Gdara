@@ -6,12 +6,12 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v5.0": {
-      "ToolApp/1.0.0": {
+      "Gdara/1.0.0": {
         "dependencies": {
           "DocumentFormat.OpenXml": "1.0.0.0"
         },
         "runtime": {
-          "ToolApp.dll": {}
+          "Gdara.dll": {}
         }
       },
       "DocumentFormat.OpenXml/1.0.0.0": {
@@ -25,7 +25,7 @@
     }
   },
   "libraries": {
-    "ToolApp/1.0.0": {
+    "Gdara/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
