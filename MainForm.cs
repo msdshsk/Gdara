@@ -116,19 +116,11 @@ namespace Gdara
 
         private void formVisibleEvent(object sender, EventArgs e)
         {
-            if (this.Visible && Form.ActiveForm == null)
-            {
-                this.Activate();
-            }
-            else
-            {
-                this.Visible = !this.Visible;
-            }
+            this.Visible = true;
 
-            if (this.Visible)
-            {
-                this.Activate();
-            }
+            caseNum.Focus();
+            caseNum.SelectAll();
+            this.Activate();
         }
 
         public void hotKey_ScreenShotAndSaveAs(object sender, EventArgs e)
